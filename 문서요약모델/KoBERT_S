@@ -1,0 +1,39 @@
+def preprocess(sentence, complex_word):
+    res_tokens = []
+    
+    first_tokens = nltk.word_tokenize(sentence)
+    first_tokens = ['[CLS]'] + first_tokens + ['[SEP]']
+    
+    print(complex_word)
+    second_tokens = [token if token != complex_word else '[MASK]' for token in first_tokens[1:]]
+
+    res_tokens = first_tokens + second_tokens
+
+    res_sens = ' '.join(res_tokens)
+    
+    print(res_sens)
+    return res_tokens
+    x_train_tokens = []
+
+for i in range(len(x_train)):
+    x_train_tokens.append(preprocess(x_train[i], complex_words[i]))
+    
+    res_tokens = []
+token_ids = []
+new_token_ids = []
+token_type_ids = []
+
+for i in range(len(x_train)):
+    res_token, token_type_id = preprocess(x_train[i], y_train[i])
+    res_tokens.append(res_token)
+    token_type_ids.append(token_type_id)
+    
+for res_token in res_tokens:
+    token_ids.append(tokenizer.convert_tokens_to_ids(res_token))
+
+
+# for token_id in token_ids:
+#     if len(token_id) < max_seq_length:
+#         while len(token_id) < max_seq_length:
+#             token_id.append(0)
+#             token_type_ids.append(0)
