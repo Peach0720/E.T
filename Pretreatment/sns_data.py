@@ -65,7 +65,7 @@ def remove_tag(sentence):
 
     return text
 
-def loadjs(json_path='C:/Users/DILAB/Downloads/user_dic.json'):
+def loadjs(json_path='./user_dic.json'):
     with open(json_path,'r',encoding='UTF-8') as file:
         data=json.load(file)
     data = pd.DataFrame(data)
