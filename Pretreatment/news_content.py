@@ -78,7 +78,7 @@ def loadjs(json_path='./user_dic.json'):
 
 mecab = Mecab(dicpath=r"C:/mecab/mecab-ko-dic")
 
-file=open('C:/Users/DILAB/Downloads/불용어.txt',encoding='utf-8')
+file=open('./불용어.txt',encoding='utf-8')
 stopwords=file.readlines()
 file.close()
 
@@ -176,23 +176,4 @@ data=data.dropna(how='any')
 print(data['id'].value_counts())
 data.to_csv(filepath,encoding="euc-kr")
 print("저장 완료")
-"""
-data
-f_rr=open("C:/Users/DILAB/Downloads/데이터.txt",'w',encoding='UTF8')
-for text in data:
-    f_rr.write(str(text[0])+"\t"+str(text[1])+'\n')
-
-f_rr.close()
-"""
-
-
-"""
-    morphs = mecab.morphs(sentence)
-    print('형태소 단위:', morphs)
-
-    result = []
-    for word in morphs:
-        if word not in stopwords:
-            result.append(word)
-"""
 
