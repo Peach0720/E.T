@@ -9,7 +9,7 @@ pymysql.install_as_MySQLdb()
 import MySQLdb
 from konlpy.tag import Mecab
 
-filepath="./news_내용.csv"           #파일이름
+filepath="./news_content.csv"           #파일이름
 
 def delete_word(word):
     word=word.replace("&lt;1&gt", "").replace("All rights reserved", "").replace("저작권자", "")
@@ -102,7 +102,7 @@ table = sqlalchemy.Table('news', metadata, autoload=True, autoload_with=engine) 
 print(table.columns.keys())
 indata=[]
 ###query = sqlalchemy.select([table])
-query = sqlalchemy.select(table.c.title,table.c.date,table.c.Ticker).where(
+query = sqlalchemy.select(table.c.content,table.c.date,table.c.Ticker).where(
     table.c.date >= '2021.07.01', table.c.date <= '2021.12.31', table.c.Ticker != '05930', table.c.Ticker != '000660' )
 print(query)
 with engine.connect() as conn:
